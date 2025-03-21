@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Rentals</title>
+    <link href="/styles/main.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        color: white;
+        padding: 10px 20px;
+        background: #4d4ae8;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      #main {
+        flex: 1;
+        padding: 20px;
+        background-color: #f8f9fa;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        text-align: center;
+        color: #4d4ae8;
+      }
+
+      nav {
+        flex: 0 0 250px;
+        background-color: #4d4ae8;
+        color: #ffffff;
+        padding: 1.5em;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      nav a,
+      nav button {
+        display: block;
+        text-decoration: none;
+        font-weight: 500;
+        background-color: #333;
+        color: white;
+        text-align: center;
+        border-radius: 4px;
+        padding: 0.5em 0;
+        margin: 1em 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: 0.3s all ease;
+        width: 100%;
+      }
+
+      nav button {
+        border: none;
+        font-size: 1em;
+      }
+
+      nav a:hover,
+      nav button:hover {
+        background-color: #222;
+      }
+
+      .form-container {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 2em;
+        width: 70%;
+        margin-top: 1em;
+      }
+
+      form div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      form div span {
+        flex: 1 1 100px;
+        font-weight: 500;
+      }
+
+      form div input {
+        flex: 2 1 300px;
+        padding: 0.5em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1em;
+      }
+
+      form div input[type="radio"] {
+        flex: 0;
+        width: auto;
+        margin-right: 0.5em;
+      }
+
+      form button {
+        margin-top: 1rem;
+      }
+
+      hr {
+        border: 0;
+        height: 1px;
+        background: #ddd;
+        margin: 1.5em 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <nav style="margin-left: 2rem; margin-top: 2rem;">
+      <div style="display: flex; align-items: center; margin-bottom: 2rem;">
+        <img src="movierentalslogo.png" alt="Logo" style="height: 80px; margin-right: 1rem;" />
+        <strong style="font-size: 1.5em;">Movie Rentals</strong>
+      </div>
+      <a href="/shop.html"><strong>Continue Shopping</strong></a>
+      <a href="/basket.html"><strong>View Basket</strong></a>
+      <a href="/login.html"><strong>Logout</strong></a>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="main">
+      <h1>Payment Details</h1>
+      <div class="form-container">
+        <form method="GET" action="/invoice.html" onsubmit="storeData()">
+          <div style="text-align:start">
+            <span>Title:</span>
+            <input type="text" id="title" required />
+            <br>
+            <span>First Name:</span>
+            <input type="text" id="firstName" required />
+            <span>Surname:</span>
+            <input type="text" id="surname" required />
+          </div>
+          <hr />
+          <div>
+            <span>Number:</span>
+            <input type="number" id="addressNumber" required />
+            <span>Street:</span>
+            <input type="text" id="addressStreet" required />
+            <span>Country:</span>
+            <input type="text" id="addressCountry" required />
+          </div>
+          <div>
+            <span>Postcode:</span>
+            <input type="text" id="addressPostcode" required />
+            <span>City:</span>
+            <input type="text" id="addressCity" required />
+          </div>
+          <hr />
+          <div>
+            <span>Card Type:</span>
+            <input type="radio" name="card" value="visa" id="visa" checked />
+            <label for="visa">Visa</label>
+            <input type="radio" name="card" value="solo" id="solo" />
+            <label for="solo">Solo</label>
+            <input type="radio" name="card" value="mastercard" id="mastercard" />
+            <label for="mastercard">Mastercard</label>
+            <input type="radio" name="card" value="switch" id="switch" />
+            <label for="switch">Switch</label>
+            <span>Card Number:</span>
+            <input type="number" id="cardNumber" required />
+            <span>Expiry Date:</span>
+            <input type="month" id="expiryMonthYear" required />
+            <span>CVV:</span>
+            <input type="number" maxlength="3" id="cvv" required />
+          </div>
+          <hr />
+          <button class="button" type="submit">Proceed</button>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>
+
+    function storeData() {
+      // Collect all form data for use in the invoice
+      const formInputs = ["title", "firstName", "surname", "addressNumber", "addressStreet", "addressPostcode", "addressCountry", "addressCity", "cardNumber", "expiryMonth", "expiryYear"];
+      const formData = {};
+      formInputs.forEach((inputId) => {
+        formData[inputId] = document.getElementById(inputId).value;
+      })
+      formData.card = document.querySelector("input[name=card]:checked").value;
+      
+      localStorage.setItem("paymentDetails", JSON.stringify(formData));
+
+      return false;
+    }
+  </script>
+</html>

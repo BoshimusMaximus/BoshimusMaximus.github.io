@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Rentals</title>
+    <link href="/styles/main.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+/* General Reset */
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+/* Header Styling */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  padding: 10px 20px;
+  background: #4d4ae8;
+}
+
+header img {
+  height: 65px;
+  margin-right: 15px;
+}
+
+header strong {
+  font-size: 2.5rem;
+}
+
+/* Basket Container */
+.basket-container {
+  max-width: 1000px;
+  margin: 2em auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.basket-title {
+  font-size: 2rem;
+  color: #4d4ae8;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Basket Content */
+.basket-content {
+  background-color: #f8f8f8;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.basket-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  
+}
+
+.basket-table th,
+.basket-table td {
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.basket-table th {
+  background-color: #4d4ae8;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.basket-table td {
+  font-size: 1rem;
+  color: #555;
+}
+
+.basket-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.total-price {
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.button {
+  font-size: 1.1rem;
+  padding: 0.8em 1.5em;
+  border-radius: 6px;
+  background: #222;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+  outline: none;
+}
+
+.button:hover {
+  background: #575757;
+  transform: translateY(-2px);
+}
+
+button {
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+  .basket-container {
+    padding: 1.5rem;
+  }
+
+  .basket-title {
+    font-size: 1.8rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
+
+  </style>
+  <body>
+    <header style="display: flex; align-items: center; justify-content:flex-start; color: white; padding: 10px 20px;">
+      <img src="movierentalslogo.png" alt="Logo" style="height: 65px; margin-right: 10px;" />
+      <strong style="font-size: 48px;">Movie Rentals</strong>
+    </header>
+    <div id="main">
+      <article class="basket-container">
+        <h1 class="basket-title">Basket</h1>
+        <div class="basket-content">
+          <table class="basket-table">
+            <thead>
+              <tr>
+                <th>Movie</th>
+                <th>Time</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody id="basket"></tbody>
+          </table>
+          <hr />
+          <div class="total-price">
+            <strong>Total Price:</strong> £<span id="total-price"></span>
+          </div>
+          <hr />
+          <div class="button-group">
+            <a class="button" href="/shop.html">Continue Shopping</a>
+            <button class="button" onclick="localStorage.setItem('basket', '[]');">Clear Basket</button>
+            <a class="button" href="/order.html">Go to payment details</a>
+            <a class="button" href="login.html">Logout</a>
+          </div>
+        </div>
+      </article>
+      
+    </div>
+  </body>
+
+  <script src="./js/movies.js"></script>
+  <script>
+    const basketContainer = document.getElementById("basket");
+
+    const basket = JSON.parse(localStorage.getItem("basket") ?? "[]");
+
+    let totalPrice = 0.0;
+
+    basket.forEach((basketItem) => {
+      basketContainer.insertAdjacentHTML(
+        "beforeend",
+        `
+            <tr>
+                <td>${basketItem.name}</td>
+                <td>${basketItem.rentDays}</td>
+                <td>${(basketItem.price * basketItem.rentDays).toFixed(2)}</td>
+            </tr>
+        `
+      );
+      totalPrice += basketItem.price * basketItem.rentDays;
+    });
+
+    document.getElementById("total-price").textContent = (totalPrice * 1.2).toFixed(2);
+  </script>
+</html>
