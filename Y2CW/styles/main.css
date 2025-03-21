@@ -1,0 +1,121 @@
+.button {
+  appearance: button;
+  background-color: #4D4AE8;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0));
+  border: 1px solid #4D4AE8;
+  border-radius: 1rem;
+  box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0 inset,rgba(46, 54, 80, 0.075) 0 1px 1px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+  padding: .5rem 1rem;
+  text-align: center;
+  text-transform: none;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+.button:focus:not(:focus-visible),
+.button:focus {
+  outline: 0;
+}
+
+.button:hover {
+  background-color: #3733E5;
+  border-color: #3733E5;
+}
+
+.button:focus {
+  background-color: #413FC5;
+  border-color: #3E3BBA;
+  box-shadow: rgba(255, 255, 255, 0.15) 0 1px 0 inset, rgba(46, 54, 80, 0.075) 0 1px 1px, rgba(104, 101, 235, 0.5) 0 0 0 .2rem;
+}
+
+.button:active {
+  background-color: #3E3BBA;
+  background-image: none;
+  border-color: #3A38AE;
+  box-shadow: rgba(46, 54, 80, 0.125) 0 3px 5px inset;
+}
+
+.button:active:focus {
+  box-shadow: rgba(46, 54, 80, 0.125) 0 3px 5px inset, rgba(104, 101, 235, 0.5) 0 0 0 .2rem;
+}
+
+.button:disabled {
+  background-image: none;
+  box-shadow: none;
+  opacity: .65;
+  pointer-events: none;
+}
+
+
+
+
+.movie {
+  display: flex;
+  padding: 10px;
+}
+
+.add-to-basket {
+  width: 100px;
+  height: 40px;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.horizontal-margin {
+  margin: 0 0.75em;
+}
+/*
+https://www.quackit.com/html/html_editors/scratchpad/?example=/css/flexbox/tutorial/nested_flex_containers_example_2
+*/
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+}
+#main {
+  display: flex;
+  flex: 1;
+}
+#main > article {
+  flex: 1;
+}
+#main > nav,
+#main > aside {
+  flex: 0 0 20vw;
+  background: lightgray;
+}
+#main > nav {
+  order: -1;
+}
+header,
+footer {
+  background: #3E3BBA;
+  height: 5vh;
+  color: white;
+}
+header,
+footer,
+article,
+nav,
+aside {
+  padding: 1em;
+}
